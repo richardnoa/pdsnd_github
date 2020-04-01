@@ -12,13 +12,6 @@ CITY_NAMES = ["Chicago", "New York City", "Washington"]
 MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 DAYS = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 
-intervals = (
-    ('weeks', 604800),  # 60 * 60 * 24 * 7
-    ('days', 86400),    # 60 * 60 * 24
-    ('hours', 3600),    # 60 * 60
-    ('minutes', 60),
-    ('seconds', 1),
-    )
 
 ### functions for the project ###
 def display_time(seconds, granularity=5):
@@ -30,6 +23,14 @@ def display_time(seconds, granularity=5):
     Returns:
         (str) with time 'weeks, days, hours, minutes, seconds'
     """
+    intervals = (
+        ('weeks', 604800),  # 60 * 60 * 24 * 7
+        ('days', 86400),    # 60 * 60 * 24
+        ('hours', 3600),    # 60 * 60
+        ('minutes', 60),
+        ('seconds', 1),
+        )
+        
     result = []
 
     for name, count in intervals:
