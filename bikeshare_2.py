@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from collections import defaultdict
 
+### Static Data for the project ###
+
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -18,10 +20,11 @@ intervals = (
     ('seconds', 1),
     )
 
+
 def display_time(seconds, granularity=5):
     """
     Converts Seconds to granular time.
-    Args: 
+    Args:
         (int) seconds
 
     Returns:
@@ -121,7 +124,7 @@ def load_data(city, month, day):
     df = pd.read_csv(filename)
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['End Time'] = pd.to_datetime(df['End Time'])
-    
+
     if month < 13:
         df = df.loc[df['Start Time'].dt.month == month]
     if day < 8:
@@ -163,9 +166,9 @@ def station_stats(df):
             common_start_station[station] += 1
         else:
             common_start_station[station]=1
-    most_common_start = max(common_start_station, key=common_start_station.get)     
+    most_common_start = max(common_start_station, key=common_start_station.get)
     print("The most commonly used start station is: {}".format(most_common_start))
-    
+
     # TO DO: display most commonly used end station
     end_stations = df['End Station'].tolist()
     common_end_station = {}
@@ -174,7 +177,7 @@ def station_stats(df):
             common_end_station[end_station] += 1
         else:
             common_end_station[end_station]=1
-    most_common_end = max(common_end_station, key=common_end_station.get)     
+    most_common_end = max(common_end_station, key=common_end_station.get)
     print("The most commonly used end station is: {}".format(most_common_end))
 
     # TO DO: display most frequent combination of start station and end station trip
@@ -185,10 +188,10 @@ def station_stats(df):
             common_combination_stations[combination] += 1
         else:
             common_combination_stations[combination] = 1
-        
+
     most_common_combination = max(common_combination_stations, key=common_combination_stations.get)
     print("The most frequent combination of stations is: {}".format(most_common_combination))
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -231,10 +234,10 @@ def user_stats(df):
     print('Birth of the oldest passenger is: {}'.format(birth_max))
     birth_mean = int(df['Birth Year'].mean())
     print('Most common age of passengers is: {}'.format(birth_mean))
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
 
 def main():
     while True:
