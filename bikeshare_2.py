@@ -20,7 +20,7 @@ intervals = (
     ('seconds', 1),
     )
 
-
+### functions for the project ###
 def display_time(seconds, granularity=5):
     """
     Converts Seconds to granular time.
@@ -238,6 +238,7 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
+### main blog of the project ###
 
 def main():
     while True:
