@@ -152,6 +152,16 @@ def time_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
+def show_max_value_from_df(df,colum):
+    stations = df[colum].tolist()
+    common_station = {}
+    for station in stations:
+        if station in common_station.keys():
+            common_station[station] += 1
+        else:
+            common_station[station]=1
+    most_common = max(common_station, key=common_station.get)
+    return most_common
 
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
@@ -159,29 +169,13 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
     # TO DO: display most commonly used start station
-    start_stations = df['Start Station'].tolist()
-    common_start_station = {}
-    for station in start_stations:
-        if station in common_start_station.keys():
-            common_start_station[station] += 1
-        else:
-            common_start_station[station]=1
-    most_common_start = max(common_start_station, key=common_start_station.get)
-    print("The most commonly used start station is: {}".format(most_common_start))
-
+    print("The most commonly used start station is: {}".format(show_max_value_from_df(df,'Start Station')))
     # TO DO: display most commonly used end station
-    end_stations = df['End Station'].tolist()
-    common_end_station = {}
-    for end_station in end_stations:
-        if end_station in common_end_station.keys():
-            common_end_station[end_station] += 1
-        else:
-            common_end_station[end_station]=1
-    most_common_end = max(common_end_station, key=common_end_station.get)
-    print("The most commonly used end station is: {}".format(most_common_end))
-
+    print("The most commonly used end station is: {}".format(show_max_value_from_df(df,'End Station')))
     # TO DO: display most frequent combination of start station and end station trip
     common_combination_stations = {}
+    start_stations = df['Start Station'].tolist()
+    end_stations = df['End Station'].tolist()
     for i in range(len(start_stations)):
         combination = start_stations[i] + ' to ' + end_stations[i]
         if combination in common_combination_stations:
